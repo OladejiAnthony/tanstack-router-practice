@@ -1,21 +1,23 @@
 //Setup and Routing
-import * as React from "react";
-import { Link, Outlet, createRootRoute } from "@tanstack/react-router";
-
-export const Route = createRootRoute({
-  component: RootComponent,
-});
-
+import {
+  Link,
+  Outlet,
+  createRootRouteWithContext,
+} from "@tanstack/react-router";
+import { AuthContext } from "../hooks/useAuth";
 const activeProps = {
   style: {
-    color: "red",
     fontWeight: "bold",
   },
 };
 
-function RootComponent() {
-  return (
-    <React.Fragment>
+type RouterContext = {
+  authentication: AuthContext;
+};
+
+export const Route = createRootRouteWithContext<RouterContext>()({
+  component: () => (
+    <>
       <h2> Navigation setup</h2>
       <nav>
         <ul>
@@ -52,20 +54,34 @@ function RootComponent() {
               search={{
                 query: "pikachu",
                 hasDiscount: true,
-                categories: ["electronics", "clothing"],
+                categories: ["electronics", "clothing"], // Provide an array of strings
               }}
             >
               Search
+            </Link>
+          </li>
+          <li>
+            <Link to="/login" activeProps={activeProps}>
+              Login
+            </Link>
+          </li>
+          <li>
+            <Link to="/dashboard" activeProps={activeProps}>
+              Dashboard
+            </Link>
+          </li>
+          <li>
+            <Link to="/settings" activeProps={activeProps}>
+              Settings
             </Link>
           </li>
         </ul>
       </nav>
       {/*Children Routes display */}
       <Outlet />
-    </React.Fragment>
-  );
-}
-
+    </>
+  ),
+});
 {
   /*
     This is the root component of our application.
