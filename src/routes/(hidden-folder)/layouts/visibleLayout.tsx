@@ -12,6 +12,6 @@ export const Route = createFileRoute("/(hidden-folder)/layouts/visibleLayout")({
     </div>
   ),
   notFoundComponent: () => (
-    <div>I'm the Not found page, inside /visibleLayout</div>
+    <div>I'm the Not found page, inside the /visibleLayout</div>
   ),
 });
