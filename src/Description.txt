@@ -3,5 +3,3 @@ A. File Based Routing (Like Next.js)
     All the examples in this project follows the File based routing approach : 
 B. Code Based Routing (Like React Router)
 
-
-
